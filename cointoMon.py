@@ -10,6 +10,35 @@ cluster = "mongodb+srv://sing:<passward>@cluster0.u2mpt.mongodb.net/myFirstDatab
 api_key = 'your_api_key'
 api_secret = 'your_api_secret'
 
+user_schema = {
+    'Pair': {
+        'type': 'string',
+        'minlength': 1,
+        'required': True,
+    },
+    'Etime': {
+        'type': 'int',
+        'minlength': 1,
+        'required': True,
+    },
+    'bidV': {
+        'type': 'float',
+        "required": True,
+    },
+    'askV': {
+        'type': 'float',
+        'required': True,
+    },
+    'bidL': {
+        'type': 'string',
+        'required': True,
+    },
+    'askL': {
+        'type': 'string',
+        'required': True,
+    }
+}
+
 def main():
     client = MongoClient(cluster)
     db=client.coin
@@ -20,27 +49,43 @@ def main():
     twm.start()
 
     def handle_socket_message(msg):
-        pair = msg['data']['s']
-        time0 = msg['data']['E']
-        price = msg['data']['c']
-        filted_str = f'Pair:{pair}, Etime:{time0}, close:{price}'
-        # Using dict() + generator expression + split() + map()
-        res = dict(map(str.strip, sub.split(':', 1)) for sub in filted_str.split(', ') if ':' in sub)
-        print(type(pair),pair,time0, price)
-        #filted message is saved to coin.filted full message is saved to coin.full
-        result=db.filted.insert_one(res)
-        result=db.full.insert_one(msg)
+            pair = msg['s']
+            time0 = msg['E']
+            bidL = msg['b']
+            res_listB = []
+            for i in range(0, len(bidL)):
+                res_listB.append(float(bidL[i][0]) * float(bidL[i][1]))
 
-    #start kline socket
-    twm.start_kline_socket(callback=handle_socket_message, symbol=symbol)
-    twm.start_kline_socket(callback=handle_socket_message, symbol=symbol2)
+            askL = msg['a']
+            res_listA = []
+            for i in range(0, len(askL)):
+                res_listA.append(float(askL[i][0]) * float(askL[i][1]))
+
+            #filted_str = f'bid:{bidL}, bidV:{}, ask:{askL},askV:{sum(res_listA)}'
+            bidV = sum(res_listB)
+            askV = sum(res_listA)
+            filted_str = f'Pair:{pair},  Etime:{time0},  bidV:{bidV},  askV:{askV},  bidL:{bidL},  askL:{askL}'
+            # Using dict() + generator expression + split() + map()
+            res = dict(map(str.strip, sub.split(':', 1)) for sub in filted_str.split(',  ') if ':' in sub)
+            print("Savedmessage(filted):",pair,time0, bidV,askV)
+            #filted message is saved to coin.filted full message is saved to coin.full
+            result=db.filted12345.insert_one(res)
+            print(filted_str)
+            #result=db.sec12.insert_one(msg)
+
+
+
+    #start depth socket
+    thd1 = twm.start_depth_socket(callback=handle_socket_message, symbol=symbol)
+    thd2 = twm.start_depth_socket(callback=handle_socket_message, symbol=symbol2)
 
     # or a multiplex socket can be started like this
     # see Binance docs for stream names
-    streams = ['btcusdt@miniTicker','ethusdt@miniTicker']
-    twm.start_multiplex_socket(callback=handle_socket_message, streams=streams)
+    streams = ['btcusdt@bookTicker','ethusdt@bookTicker']
+    twm.start_multiplex_socket(callback=handle_socket_message)
+    
 
-    twm.join()
+    
 
 
 if __name__ == "__main__":
@@ -52,7 +97,7 @@ if __name__ == "__main__":
            sys.exit(0)
        except SystemExit:
            os._exit(0)
-           
+   
    #Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binance.client.Client
 # {"_id":{"$oid":"620c68f8cad678c26f39c9cb"},
 # "e":"kline",                              // Event type
