@@ -41,9 +41,37 @@ Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binan
 "B":"0"}} //
 ```
 MongoDB sample:
+```
+user_schema = {
+    'Pair': {
+        'type': 'string',
+        'minlength': 1,
+        'required': True,
+    },
+    'Etime': {
+        'type': 'int',
+        'minlength': 1,
+        'required': True,
+    },
+    'bidV': {
+        'type': 'float',
+        "required": True,
+    },
+    'askV': {
+        'type': 'float',
+        'required': True,
+    },
+    'bidL': {
+        'type': 'string',
+        'required': True,
+    },
+    'askL': {
+        'type': 'string',
+        'required': True,
+    }
+}
+```
+![image](https://user-images.githubusercontent.com/58870660/154257971-88dd612b-47c4-42eb-bac3-8274252ca808.png)
 
-![image](https://user-images.githubusercontent.com/58870660/154239701-828aba67-0b45-4348-b19f-13510c773de6.png)
-
-
-![image](https://user-images.githubusercontent.com/58870660/154239614-240b2980-b20c-4b7d-8c1c-4a5a67233505.png)
+![image](https://user-images.githubusercontent.com/58870660/154258026-20bbcaae-38ce-4729-8262-c286931a7588.png)
 
