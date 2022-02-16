@@ -48,16 +48,16 @@ user_schema = {
         'minlength': 1,
         'required': True,
     },
-    'Etime': {
+    'Etime': {               #The event time
         'type': 'int',
         'minlength': 1,
         'required': True,
     },
-    'bidV': {
+    'bidV': {               #The bid volume in the event time
         'type': 'float',
         "required": True,
     },
-    'askV': {
+    'askV': {               #The ask volume in the event time
         'type': 'float',
         'required': True,
     },
