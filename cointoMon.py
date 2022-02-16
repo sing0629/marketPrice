@@ -69,9 +69,10 @@ def main():
             res = dict(map(str.strip, sub.split(':', 1)) for sub in filted_str.split(',  ') if ':' in sub)
             print("Savedmessage(filted):",pair,time0, bidV,askV)
             #filted message is saved to coin.filted full message is saved to coin.full
-            result=db.filted12345.insert_one(res)
+            result=db.filted.insert_one(res)
             print(filted_str)
-            #result=db.sec12.insert_one(msg)
+            result=db.full.insert_one(msg)
+
 
 
 
