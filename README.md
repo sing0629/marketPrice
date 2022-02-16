@@ -27,17 +27,10 @@ Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binan
 "c":"44052.92000000", // Close price
 "h":"44057.98000000", // High price
 "l":"44050.80000000", // Low price
-
 "v":"2.94598000", // volume
-
 "n":{"$numberInt":"115"}, // Number of trades
-
 "x":false, // Is this kline closed?
-
 "q":"129780.54095260", // Quote asset volume
-
 "V":"0.58891000", // Taker buy volume
-
 "Q":"25944.25576210", //Taker buy quote asset volume
-
 "B":"0"}} //
