@@ -7,7 +7,7 @@ Using binance websocket api and get crypto market data then store inside MongoDB
 ```
 pip install python-binance
 pip install pymongo
-
+python3 cointoMon.py
 ```
 
 Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binance.client.Client
