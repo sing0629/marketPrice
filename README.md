@@ -35,3 +35,10 @@ Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binan
 "Q":"25944.25576210", //Taker buy quote asset volume
 "B":"0"}} //
 ```
+MongoDB sample:
+
+![image](https://user-images.githubusercontent.com/58870660/154239701-828aba67-0b45-4348-b19f-13510c773de6.png)
+
+
+![image](https://user-images.githubusercontent.com/58870660/154239614-240b2980-b20c-4b7d-8c1c-4a5a67233505.png)
+
