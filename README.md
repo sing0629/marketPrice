@@ -11,7 +11,7 @@ python3 cointoMon.py
 ```
 
 Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binance.client.Client
-
+```
 {"\_id":{"$oid":"620c68f8cad678c26f39c9cb"},
 "e":"kline",                              // Event type
 "E":{"$numberLong":"1644980471814"}, // Event time
@@ -34,3 +34,4 @@ Sample output https://python-binance.readthedocs.io/en/latest/binance.html#binan
 "V":"0.58891000", // Taker buy volume
 "Q":"25944.25576210", //Taker buy quote asset volume
 "B":"0"}} //
+```
