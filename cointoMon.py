@@ -29,11 +29,11 @@ user_schema = {
         'type': 'float',
         'required': True,
     },
-    'bidL': {
+    'bidL': {               #The list of bid in the event time
         'type': 'string',
         'required': True,
     },
-    'askL': {
+    'askL': {               #The list of ask in the event time
         'type': 'string',
         'required': True,
     }
