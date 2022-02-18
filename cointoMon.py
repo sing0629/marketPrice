@@ -72,18 +72,30 @@ def main():
             result=db.filted.insert_one(res)
             print(filted_str)
             result=db.full.insert_one(msg)
-
+    def handle_socket_message2(msg):
+            pair = msg['s']
+            close = msg['k']['c']
+            filted_str = f'Close:{close}'
+            # Using dict() + generator expression + split() + map()
+            res = dict(map(str.strip, sub.split(':', 1)) for sub in filted_str.split(',  ') if ':' in sub)
+            print("Savedmessage(filted):",close,pair)
+            #filted message is saved to coin.filted2 full message is saved to coin.full2
+            result=db.filted2.insert_one(res)
+            print(filted_str)
+            result=db.full2.insert_one(msg)
 
 
 
     #start depth socket
     thd1 = twm.start_depth_socket(callback=handle_socket_message, symbol=symbol)
     thd2 = twm.start_depth_socket(callback=handle_socket_message, symbol=symbol2)
-
+    #start kline socket
+    thd1 = twm.start_kline_socket(callback=handle_socket_message2, symbol=symbol)
+    thd2 = twm.start_kline_socket(callback=handle_socket_message2, symbol=symbol2)
     # or a multiplex socket can be started like this
     # see Binance docs for stream names
-    streams = ['btcusdt@bookTicker','ethusdt@bookTicker']
-    twm.start_multiplex_socket(callback=handle_socket_message)
+    #streams = ['btcusdt@bookTicker','ethusdt@bookTicker']
+    #twm.start_multiplex_socket(callback=handle_socket_message)
     
 
     
