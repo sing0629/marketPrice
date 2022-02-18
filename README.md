@@ -75,3 +75,7 @@ user_schema = {
 
 ![image](https://user-images.githubusercontent.com/58870660/154258026-20bbcaae-38ce-4729-8262-c286931a7588.png)
 
+![image](https://user-images.githubusercontent.com/58870660/154613885-80ae3ede-b72c-4a17-9ab9-ef571a5c2194.png)
+
+![image](https://user-images.githubusercontent.com/58870660/154613852-cf1c1fca-02a8-49cd-ad85-554e51812ee2.png)
+
