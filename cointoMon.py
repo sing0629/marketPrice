@@ -74,11 +74,12 @@ def main():
             result=db.full.insert_one(msg)
     def handle_socket_message2(msg):
             pair = msg['s']
+            time0 = msg['E']
             close = msg['k']['c']
-            filted_str = f'Close:{close}'
+            filted_str = f'Pair:{pair}, Close:{close}, time:{time0}'
             # Using dict() + generator expression + split() + map()
             res = dict(map(str.strip, sub.split(':', 1)) for sub in filted_str.split(',  ') if ':' in sub)
-            print("Savedmessage(filted):",close,pair)
+            print("Savedmessage(filted):",close,pair,time0)
             #filted message is saved to coin.filted2 full message is saved to coin.full2
             result=db.filted2.insert_one(res)
             print(filted_str)
